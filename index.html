@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신영규 대리 런닝 6주 플랜</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #0f0f1a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(0, 210, 255, 0.06) 0%, transparent 50%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, -20px); }
+        }
+
+        .hero-badge {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 107, 53, 0.15);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            color: #ff6b35;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            position: relative;
+            z-index: 1;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #ff6b35 50%, #00d2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            position: relative;
+            z-index: 1;
+            font-size: 1.2rem;
+            color: #8a8a9a;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-stats {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ff6b35;
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: #6a6a7a;
+            margin-top: 0.3rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            z-index: 1;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 28px;
+            height: 28px;
+            stroke: #555;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* Section Common */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .section-subtitle {
+            color: #6a6a7a;
+            margin-bottom: 3rem;
+            font-size: 1rem;
+        }
+
+        /* Roadmap */
+        .roadmap {
+            background: linear-gradient(180deg, #0f0f1a 0%, #131325 100%);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #ff6b35, #00d2ff);
+            border-radius: 2px;
+        }
+
+        .week-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .week-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 107, 53, 0.3);
+            transform: translateX(8px);
+        }
+
+        .week-card::before {
+            content: '';
+            position: absolute;
+            left: -2.65rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff6b35;
+            border: 3px solid #0f0f1a;
+            z-index: 1;
+        }
+
+        .week-card:nth-child(even)::before {
+            background: #00d2ff;
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .week-number {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #ff6b35;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .week-card:nth-child(even) .week-number {
+            color: #00d2ff;
+        }
+
+        .week-theme {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 0.3rem;
+        }
+
+        .week-dates {
+            font-size: 0.85rem;
+            color: #555;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .week-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .week-detail {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .week-detail-label {
+            font-size: 0.7rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+
+        .week-detail-value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #ccc;
+        }
+
+        .week-tips {
+            display: none;
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .week-tips.active {
+            display: block;
+        }
+
+        .week-tips ul {
+            list-style: none;
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .week-tips li {
+            font-size: 0.9rem;
+            color: #999;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .week-tips li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: #ff6b35;
+            font-weight: 700;
+        }
+
+        /* Checklist */
+        .checklist-section {
+            background: #0f0f1a;
+        }
+
+        .week-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .week-tab {
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            color: #888;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .week-tab:hover {
+            border-color: rgba(255, 107, 53, 0.4);
+            color: #ccc;
+        }
+
+        .week-tab.active {
+            background: linear-gradient(135deg, #ff6b35, #e55a2b);
+            border-color: #ff6b35;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .checklist-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 0.5rem;
+        }
+
+        .checklist-table thead th {
+            font-size: 0.75rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.8rem 1rem;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .checklist-table tbody tr {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .checklist-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .checklist-table td {
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .checklist-table td:first-child {
+            border-radius: 10px 0 0 10px;
+            font-weight: 500;
+            color: #bbb;
+        }
+
+        .checklist-table td:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .checklist-table td:nth-child(3),
+        .checklist-table td:nth-child(4) {
+            text-align: center;
+        }
+
+        .km-badge {
+            background: rgba(255, 107, 53, 0.12);
+            color: #ff6b35;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .dday-row {
+            background: rgba(255, 107, 53, 0.08) !important;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .dday-row td {
+            color: #ff6b35 !important;
+            font-weight: 600 !important;
+        }
+
+        .check-input {
+            width: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 0.3rem 0.5rem;
+            color: #ccc;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .check-input:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        .condition-stars {
+            display: flex;
+            gap: 3px;
+            justify-content: center;
+        }
+
+        .star {
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: #333;
+            transition: color 0.2s;
+        }
+
+        .star.filled {
+            color: #ffd700;
+        }
+
+        .check-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .check-btn.checked {
+            background: #ff6b35;
+            border-color: #ff6b35;
+        }
+
+        .check-btn.checked::after {
+            content: '\2713';
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        /* Progress Chart */
+        .progress-section {
+            background: linear-gradient(180deg, #131325 0%, #0f0f1a 100%);
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 250px;
+            padding: 1rem 0;
+            gap: 1rem;
+        }
+
+        .bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            max-width: 120px;
+        }
+
+        .bar-value {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ccc;
+            margin-bottom: 0.5rem;
+        }
+
+        .bar {
+            width: 100%;
+            border-radius: 8px 8px 4px 4px;
+            min-height: 20px;
+            position: relative;
+            transition: height 1s ease;
+        }
+
+        .bar-1 { background: linear-gradient(180deg, #ff6b35, #cc5529); }
+        .bar-2 { background: linear-gradient(180deg, #ff8855, #dd6633); }
+        .bar-3 { background: linear-gradient(180deg, #ffaa44, #cc8833); }
+        .bar-4 { background: linear-gradient(180deg, #44ccaa, #339988); }
+        .bar-5 { background: linear-gradient(180deg, #00d2ff, #00a0cc); }
+        .bar-6 { background: linear-gradient(180deg, #8888ff, #6666cc); }
+
+        .bar-label {
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: #0f0f1a;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .tip-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            border-color: rgba(255, 107, 53, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .tip-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .tip-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #eee;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-desc {
+            font-size: 0.85rem;
+            color: #777;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #333;
+            font-size: 0.85rem;
+            background: #0a0a14;
+        }
+
+        .footer-quote {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .hero-stat-value {
+                font-size: 1.6rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .checklist-table {
+                font-size: 0.8rem;
+            }
+
+            .checklist-table thead th {
+                font-size: 0.65rem;
+                padding: 0.5rem;
+            }
+
+            .checklist-table td {
+                padding: 0.7rem 0.5rem;
+            }
+
+            .bar-chart {
+                height: 180px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Tab content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-badge">SEASON 2 - 시즌 1 (5km) 완주 후</div>
+    <h1>런닝 6주 플랜</h1>
+    <p>신영규 대리의 10km 완주 도전기</p>
+    <p style="color:#555; font-size:0.95rem;">2026.04.07 ~ 2026.05.17</p>
+
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="hero-stat-value">6</div>
+            <div class="hero-stat-label">WEEKS</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-value">10km</div>
+            <div class="hero-stat-label">GOAL</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-value">117km</div>
+            <div class="hero-stat-label">TOTAL</div>
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+        </svg>
+    </div>
+</section>
+
+<!-- Roadmap -->
+<section class="roadmap">
+    <div class="section">
+        <div class="section-title">6주 로드맵</div>
+        <div class="section-subtitle">5km 기반 위에 10km까지 점진적으로 확장합니다</div>
+
+        <div class="timeline">
+            <!-- Week 1 -->
+            <div class="week-card" onclick="toggleTips(this)">
+                <div class="week-header">
+                    <div>
+                        <div class="week-number">Week 1</div>
+                        <div class="week-theme">5km 안정화</div>
+                    </div>
+                    <div class="week-dates">4/7 ~ 4/12</div>
+                </div>
+                <div class="week-details">
+                    <div class="week-detail">
+                        <div class="week-detail-label">빈도</div>
+                        <div class="week-detail-value">주 3~4회</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">운동량</div>
+                        <div class="week-detail-value">5km 편안하게 (35~40분)</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">목표</div>
+                        <div class="week-detail-value">5km를 무리 없이 뛰는 감각 만들기</div>
+                    </div>
+                </div>
+                <div class="week-tips">
+                    <ul>
+                        <li>5km 완주 직후이므로 무리하지 않고 유지에 집중</li>
+                        <li>페이스 욕심 내지 않기 — km당 7~8분 유지</li>
+                        <li>러닝 후 쿨다운 워킹 5분 + 하체 스트레칭 필수</li>
+                        <li>컨디션 점검: 4주 플랜에서 쌓인 피로 체크</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="week-card" onclick="toggleTips(this)">
+                <div class="week-header">
+                    <div>
+                        <div class="week-number">Week 2</div>
+                        <div class="week-theme">거리 확장 시작</div>
+                    </div>
+                    <div class="week-dates">4/13 ~ 4/19</div>
+                </div>
+                <div class="week-details">
+                    <div class="week-detail">
+                        <div class="week-detail-label">빈도</div>
+                        <div class="week-detail-value">주 4회</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">운동량</div>
+                        <div class="week-detail-value">평일 5km + 주말 6km</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">목표</div>
+                        <div class="week-detail-value">주말 롱런 도입, 6km까지 확장</div>
+                    </div>
+                </div>
+                <div class="week-tips">
+                    <ul>
+                        <li>주중은 기존 5km 유지, 주말 1회만 거리 증가</li>
+                        <li>주간 총 운동량을 10% 이상 급격히 늘리지 않기</li>
+                        <li>러닝 전 동적 스트레칭 (레그스윙, 런지워크 등) 추가</li>
+                        <li>수분 보충: 6km 이상부터는 중간 수분 섭취 고려</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="week-card" onclick="toggleTips(this)">
+                <div class="week-header">
+                    <div>
+                        <div class="week-number">Week 3</div>
+                        <div class="week-theme">7km 도전</div>
+                    </div>
+                    <div class="week-dates">4/20 ~ 4/26</div>
+                </div>
+                <div class="week-details">
+                    <div class="week-detail">
+                        <div class="week-detail-label">빈도</div>
+                        <div class="week-detail-value">주 4회</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">운동량</div>
+                        <div class="week-detail-value">평일 5km + 주말 7km</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">목표</div>
+                        <div class="week-detail-value">7km 연속 런닝 (약 50~55분)</div>
+                    </div>
+                </div>
+                <div class="week-tips">
+                    <ul>
+                        <li>7km부터는 에너지 관리가 중요 — 러닝 1.5시간 전 탄수화물 섭취</li>
+                        <li>호흡이 흐트러지면 페이스를 낮추되 멈추지 않기</li>
+                        <li>주 1회는 회복 런 (3~4km, 느린 페이스)으로 전환</li>
+                        <li>발바닥·무릎 상태 수시 점검, 통증 시 1~2일 휴식</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="week-card" onclick="toggleTips(this)">
+                <div class="week-header">
+                    <div>
+                        <div class="week-number">Week 4</div>
+                        <div class="week-theme">체력 끌어올리기</div>
+                    </div>
+                    <div class="week-dates">4/27 ~ 5/3</div>
+                </div>
+                <div class="week-details">
+                    <div class="week-detail">
+                        <div class="week-detail-label">빈도</div>
+                        <div class="week-detail-value">주 4회</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">운동량</div>
+                        <div class="week-detail-value">평일 5~6km + 주말 8km</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">목표</div>
+                        <div class="week-detail-value">8km 연속 런닝 + 지구력 강화</div>
+                    </div>
+                </div>
+                <div class="week-tips">
+                    <ul>
+                        <li>평일 1회를 6km로 늘려 거리 적응도 높이기</li>
+                        <li>주말 롱런 시 일정한 페이스 유지 연습 (km당 7분 내외)</li>
+                        <li>코어 운동 추가 권장 (플랭크 30초 x 3세트, 주 3회)</li>
+                        <li>러닝 후 폼롤러 + 종아리·허벅지 스트레칭 철저히</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Week 5 -->
+            <div class="week-card" onclick="toggleTips(this)">
+                <div class="week-header">
+                    <div>
+                        <div class="week-number">Week 5</div>
+                        <div class="week-theme">10km 시험 런닝</div>
+                    </div>
+                    <div class="week-dates">5/4 ~ 5/10</div>
+                </div>
+                <div class="week-details">
+                    <div class="week-detail">
+                        <div class="week-detail-label">빈도</div>
+                        <div class="week-detail-value">주 4회</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">운동량</div>
+                        <div class="week-detail-value">평일 5~6km + 주말 10km</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">목표</div>
+                        <div class="week-detail-value">10km 1회 완주 경험 만들기</div>
+                    </div>
+                </div>
+                <div class="week-tips">
+                    <ul>
+                        <li>주말 10km 도전: 완주가 목표, 페이스는 신경 쓰지 않기</li>
+                        <li>10km 런닝 시 5km 지점에서 물 한 모금 (수분 보급 연습)</li>
+                        <li>시험 런닝 후 반드시 1~2일 완전 휴식</li>
+                        <li>근육 회복을 위해 단백질 섭취 늘리기 (체중 kg당 1.2~1.5g)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Week 6 -->
+            <div class="week-card" onclick="toggleTips(this)">
+                <div class="week-header">
+                    <div>
+                        <div class="week-number">Week 6</div>
+                        <div class="week-theme">컨디션 조절 + 실전</div>
+                    </div>
+                    <div class="week-dates">5/11 ~ 5/17</div>
+                </div>
+                <div class="week-details">
+                    <div class="week-detail">
+                        <div class="week-detail-label">빈도</div>
+                        <div class="week-detail-value">주 3~4회</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">운동량</div>
+                        <div class="week-detail-value">가벼운 조절 런 → D-Day 10km</div>
+                    </div>
+                    <div class="week-detail">
+                        <div class="week-detail-label">목표</div>
+                        <div class="week-detail-value">최상의 컨디션으로 10km 완주</div>
+                    </div>
+                </div>
+                <div class="week-tips">
+                    <ul>
+                        <li>5/11~5/14: 가벼운 조깅 3~4km (컨디션 유지)</li>
+                        <li>5/15 (금): 완전 휴식</li>
+                        <li>5/16 (토): 가벼운 워킹 20분 + 스트레칭</li>
+                        <li>5/17 (일): D-Day 10km 완주!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Checklist -->
+<section class="checklist-section">
+    <div class="section">
+        <div class="section-title">일별 체크리스트</div>
+        <div class="section-subtitle">매일 기록하며 성장을 확인하세요. 카드를 클릭하면 관리포인트가 나타납니다.</div>
+
+        <div class="week-tabs">
+            <button class="week-tab active" onclick="showTab(0)">1주차</button>
+            <button class="week-tab" onclick="showTab(1)">2주차</button>
+            <button class="week-tab" onclick="showTab(2)">3주차</button>
+            <button class="week-tab" onclick="showTab(3)">4주차</button>
+            <button class="week-tab" onclick="showTab(4)">5주차</button>
+            <button class="week-tab" onclick="showTab(5)">6주차</button>
+        </div>
+
+        <!-- Tab 1 -->
+        <div class="tab-content active" id="tab-0">
+            <table class="checklist-table">
+                <thead>
+                    <tr><th>날짜</th><th>운동 내용</th><th>목표</th><th>실제</th><th>컨디션</th><th>완료</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>4/7 (화)</td><td>5km 편안한 런닝</td><td><span class="km-badge">5km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="1-1"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>4/9 (목)</td><td>5km 편안한 런닝</td><td><span class="km-badge">5km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="1-2"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>4/11 (토)</td><td>5km 편안한 런닝</td><td><span class="km-badge">5km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="1-3"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 2 -->
+        <div class="tab-content" id="tab-1">
+            <table class="checklist-table">
+                <thead>
+                    <tr><th>날짜</th><th>운동 내용</th><th>목표</th><th>실제</th><th>컨디션</th><th>완료</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>4/14 (화)</td><td>5km 런닝</td><td><span class="km-badge">5km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="2-1"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>4/16 (목)</td><td>5km 런닝</td><td><span class="km-badge">5km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="2-2"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>4/17 (금)</td><td>회복 런 (가볍게)</td><td><span class="km-badge">3km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="2-3"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>4/19 (일)</td><td>6km 롱런</td><td><span class="km-badge">6km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="2-4"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 3 -->
+        <div class="tab-content" id="tab-2">
+            <table class="checklist-table">
+                <thead>
+                    <tr><th>날짜</th><th>운동 내용</th><th>목표</th><th>실제</th><th>컨디션</th><th>완료</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>4/21 (화)</td><td>5km 런닝</td><td><span class="km-badge">5km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="3-1"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>4/23 (목)</td><td>5km 런닝</td><td><span class="km-badge">5km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="3-2"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>4/24 (금)</td><td>회복 런 (가볍게)</td><td><span class="km-badge">3km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="3-3"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>4/26 (일)</td><td>7km 롱런</td><td><span class="km-badge">7km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="3-4"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 4 -->
+        <div class="tab-content" id="tab-3">
+            <table class="checklist-table">
+                <thead>
+                    <tr><th>날짜</th><th>운동 내용</th><th>목표</th><th>실제</th><th>컨디션</th><th>완료</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>4/28 (화)</td><td>5km 런닝</td><td><span class="km-badge">5km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="4-1"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>4/30 (목)</td><td>6km 런닝</td><td><span class="km-badge">6km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="4-2"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>5/1 (금)</td><td>회복 런 (가볍게)</td><td><span class="km-badge">3km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="4-3"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>5/3 (일)</td><td>8km 롱런</td><td><span class="km-badge">8km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="4-4"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 5 -->
+        <div class="tab-content" id="tab-4">
+            <table class="checklist-table">
+                <thead>
+                    <tr><th>날짜</th><th>운동 내용</th><th>목표</th><th>실제</th><th>컨디션</th><th>완료</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>5/5 (화)</td><td>5km 런닝</td><td><span class="km-badge">5km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="5-1"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>5/7 (목)</td><td>6km 런닝</td><td><span class="km-badge">6km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="5-2"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>5/8 (금)</td><td>회복 런 (가볍게)</td><td><span class="km-badge">3km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="5-3"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>5/10 (일)</td><td>10km 시험 런닝</td><td><span class="km-badge">10km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="5-4"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 6 -->
+        <div class="tab-content" id="tab-5">
+            <table class="checklist-table">
+                <thead>
+                    <tr><th>날짜</th><th>운동 내용</th><th>목표</th><th>실제</th><th>컨디션</th><th>완료</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>5/12 (화)</td><td>가벼운 조깅</td><td><span class="km-badge">4km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="6-1"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>5/14 (목)</td><td>가벼운 조깅</td><td><span class="km-badge">3km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="6-2"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>5/15 (금)</td><td>완전 휴식</td><td><span class="km-badge">-</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="6-3"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr><td>5/16 (토)</td><td>워킹 + 스트레칭</td><td><span class="km-badge">-</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="6-4"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                    <tr class="dday-row"><td>5/17 (일)</td><td>D-Day 10km 완주!</td><td><span class="km-badge">10km</span></td><td><input class="check-input" placeholder="km"></td><td><div class="condition-stars" data-row="6-5"></div></td><td><button class="check-btn" onclick="toggleCheck(this)"></button></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Progress Chart -->
+<section class="progress-section">
+    <div class="section">
+        <div class="section-title">주간 거리 추이</div>
+        <div class="section-subtitle">6주간 총 117km를 달려갑니다</div>
+
+        <div class="chart-container">
+            <div class="bar-chart">
+                <div class="bar-group">
+                    <div class="bar-value">15km</div>
+                    <div class="bar bar-1" style="height: 60%"></div>
+                    <div class="bar-label">1주차</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-value">19km</div>
+                    <div class="bar bar-2" style="height: 72%"></div>
+                    <div class="bar-label">2주차</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-value">20km</div>
+                    <div class="bar bar-3" style="height: 76%"></div>
+                    <div class="bar-label">3주차</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-value">22km</div>
+                    <div class="bar bar-4" style="height: 84%"></div>
+                    <div class="bar-label">4주차</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-value">24km</div>
+                    <div class="bar bar-5" style="height: 92%"></div>
+                    <div class="bar-label">5주차</div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-value">17km</div>
+                    <div class="bar bar-6" style="height: 66%"></div>
+                    <div class="bar-label">6주차<br><span style="font-size:0.7rem;color:#888;">테이퍼링</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tips -->
+<section class="tips-section">
+    <div class="section">
+        <div class="section-title">관리포인트</div>
+        <div class="section-subtitle">10km 완주를 위해 꼭 기억해야 할 것들</div>
+
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon">📏</div>
+                <div class="tip-title">거리 증가 원칙</div>
+                <div class="tip-desc">주간 총 거리를 매주 10% 이내로 증가시킵니다. 급격한 증가는 부상의 원인입니다.</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🏃</div>
+                <div class="tip-title">롱런</div>
+                <div class="tip-desc">주 1회 주말에 최장 거리를 뜁니다. 지구력 향상의 핵심 훈련입니다.</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🔄</div>
+                <div class="tip-title">회복 런</div>
+                <div class="tip-desc">주 1회 짧고 느린 런닝으로 회복을 촉진합니다. km당 8~9분의 느린 페이스로.</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🥗</div>
+                <div class="tip-title">영양 관리</div>
+                <div class="tip-desc">런닝 전 탄수화물, 러닝 후 단백질 보충. 7km 이상 시 중간 수분 섭취 필수.</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">💪</div>
+                <div class="tip-title">코어 운동</div>
+                <div class="tip-desc">플랭크·브릿지 등 보조 운동을 주 2~3회. 자세 안정과 부상 예방에 효과적.</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">⚠️</div>
+                <div class="tip-title">부상 예방</div>
+                <div class="tip-desc">통증 발생 시 1~2일 즉시 휴식. 무릎·발목·발바닥에 특히 주의하세요.</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">😴</div>
+                <div class="tip-title">수면</div>
+                <div class="tip-desc">최소 7시간, D-Day 전날은 8시간 이상. 회복과 퍼포먼스의 기본입니다.</div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">📊</div>
+                <div class="tip-title">기록</div>
+                <div class="tip-desc">러닝 앱으로 거리·페이스·심박수를 추적. 성장 데이터가 최고의 동기부여.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-quote">"5km를 정복한 신영규 대리, 이제 10km도 거뜬합니다."</div>
+    <p>꾸준함이 실력입니다.</p>
+</footer>
+
+<script>
+    // Toggle tips in week cards
+    function toggleTips(card) {
+        const tips = card.querySelector('.week-tips');
+        tips.classList.toggle('active');
+    }
+
+    // Tab switching
+    function showTab(index) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('tab-' + index).classList.add('active');
+        document.querySelectorAll('.week-tab')[index].classList.add('active');
+    }
+
+    // Check button toggle
+    function toggleCheck(btn) {
+        btn.classList.toggle('checked');
+        saveData();
+    }
+
+    // Star rating
+    function initStars() {
+        document.querySelectorAll('.condition-stars').forEach(container => {
+            const row = container.dataset.row;
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.className = 'star';
+                star.textContent = '\u2605';
+                star.dataset.value = i;
+                star.addEventListener('click', () => {
+                    container.querySelectorAll('.star').forEach((s, idx) => {
+                        s.classList.toggle('filled', idx < i);
+                    });
+                    saveData();
+                });
+                container.appendChild(star);
+            }
+        });
+    }
+
+    // LocalStorage save/load
+    function saveData() {
+        const data = {};
+        document.querySelectorAll('.check-input').forEach((input, i) => {
+            data['input-' + i] = input.value;
+        });
+        document.querySelectorAll('.check-btn').forEach((btn, i) => {
+            data['check-' + i] = btn.classList.contains('checked');
+        });
+        document.querySelectorAll('.condition-stars').forEach((container, i) => {
+            const filled = container.querySelectorAll('.star.filled').length;
+            data['stars-' + i] = filled;
+        });
+        localStorage.setItem('running-plan-6week', JSON.stringify(data));
+    }
+
+    function loadData() {
+        const raw = localStorage.getItem('running-plan-6week');
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        document.querySelectorAll('.check-input').forEach((input, i) => {
+            if (data['input-' + i]) input.value = data['input-' + i];
+        });
+        document.querySelectorAll('.check-btn').forEach((btn, i) => {
+            if (data['check-' + i]) btn.classList.add('checked');
+        });
+        document.querySelectorAll('.condition-stars').forEach((container, i) => {
+            const filled = data['stars-' + i] || 0;
+            container.querySelectorAll('.star').forEach((s, idx) => {
+                s.classList.toggle('filled', idx < filled);
+            });
+        });
+    }
+
+    // Input save on change
+    document.addEventListener('input', (e) => {
+        if (e.target.classList.contains('check-input')) saveData();
+    });
+
+    // Init
+    initStars();
+    loadData();
+</script>
+
+</body>
+</html>
